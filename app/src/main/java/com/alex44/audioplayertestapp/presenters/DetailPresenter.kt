@@ -23,11 +23,24 @@ class DetailPresenter(private val dto: DataDTO?) : MvpPresenter<DetailView>() {
         viewState.setArtistName(dto?.artistName.orEmpty())
         viewState.setTrackName(dto?.trackName.orEmpty())
         viewState.setPhoto(dto?.artworkUrl.orEmpty())
+        viewState.initButtons()
     }
 
     fun backClicked() : Boolean {
         router.backTo(Screens.HomeScreen())
         return true
+    }
+
+    fun playClicked() {
+        viewState.showMessage("PLAY")
+    }
+
+    fun pauseClicked() {
+        viewState.showMessage("PAUSE")
+    }
+
+    fun stopClicked() {
+        viewState.showMessage("STOP")
     }
 
 }

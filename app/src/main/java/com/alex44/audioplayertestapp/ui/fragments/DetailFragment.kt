@@ -57,6 +57,24 @@ class DetailFragment : MvpAppCompatFragment(), DetailView, BackButtonListener {
         return presenter
     }
 
+    override fun initButtons() {
+        play_button.setOnClickListener {
+            presenter.playClicked()
+            pause_button.visibility = View.VISIBLE
+            it.visibility = View.GONE
+        }
+        pause_button.setOnClickListener {
+            presenter.pauseClicked()
+            play_button.visibility = View.VISIBLE
+            it.visibility = View.GONE
+        }
+        stop_button.setOnClickListener {
+            presenter.stopClicked()
+            play_button.visibility = View.VISIBLE
+            pause_button.visibility = View.GONE
+        }
+    }
+
     override fun setArtistName(artistName: String) {
         detail_artist_name.text = artistName
     }

@@ -14,4 +14,6 @@ interface DetailView : MvpView {
     fun setPhoto(photoUrl : String)
 
     fun showMessage(message: String)
+
+    fun initButtons()
 }
