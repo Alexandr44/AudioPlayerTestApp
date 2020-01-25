@@ -1,5 +1,6 @@
 package com.alex44.audioplayertestapp.presenters
 
+import com.alex44.audioplayertestapp.common.navigation.Screens
 import com.alex44.audioplayertestapp.model.dto.DataDTO
 import com.alex44.audioplayertestapp.model.repo.IDataRepo
 import com.alex44.audioplayertestapp.views.HomeRVItemView
@@ -65,7 +66,8 @@ class HomePresenter(private val mainThreadScheduler : Scheduler) : MvpPresenter<
     }
 
     fun clicked(position: Int) {
-
+        val dto = data[position]
+        router.navigateTo(Screens.DetailScreen(dto))
     }
 
     fun searchTextEntered(newText: String) {
@@ -73,10 +75,6 @@ class HomePresenter(private val mainThreadScheduler : Scheduler) : MvpPresenter<
             if (!it.isDisposed) it.dispose()
         }
         loadDataFromApi(newText)
-    }
-
-    fun saveRvPosition(position: Int) {
-        rvPosition = position
     }
 
 }

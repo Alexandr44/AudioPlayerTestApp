@@ -1,5 +1,4 @@
-package com.alex44.audioplayertestapp.ui.activities
-
+package com.alex44.audioplayertestapp.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -53,7 +52,7 @@ class HomeFragment : MvpAppCompatFragment(), HomeView {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
-                    if (it.length > 5) {
+                    if (it.length >= 5) {
                         presenter.searchTextEntered(newText)
                     }
                 }
