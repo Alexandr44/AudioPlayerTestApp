@@ -49,7 +49,7 @@ class HomeRVAdapter(private val presenter : HomePresenter) : RecyclerView.Adapte
         }
 
         override fun setPhoto(photoUrl: String) {
-            imageLoader.loadInto(photoUrl, view.rv_item_image, 20)
+            imageLoader.loadInto(photoUrl, view.rv_item_image, 120)
         }
 
         override fun getItemPosition(): Int {

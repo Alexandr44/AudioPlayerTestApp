@@ -7,7 +7,8 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:layout_margin="8dp"
-    app:cardCornerRadius="16dp">
+    app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="@color/colorRVItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,13 +17,13 @@
 
         <ImageView
             android:id="@+id/rv_item_image"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_margin="4dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:adjustViewBounds="true"
-            android:layout_margin="4dp"
             tools:src="@mipmap/ic_launcher"
             />
 
@@ -32,11 +33,12 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:textColor="@android:color/black"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/rv_track_text"
             app:layout_constraintStart_toEndOf="@+id/rv_item_image"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="4dp"
             tools:text="Artist Name"
             />
 
@@ -46,11 +48,12 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:textColor="@android:color/black"
             app:layout_constraintTop_toBottomOf="@+id/rv_artist_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rv_item_image"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="4dp"
             tools:text="Track Name"
             />
 
