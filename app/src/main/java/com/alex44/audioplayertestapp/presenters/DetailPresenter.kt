@@ -2,6 +2,7 @@ package com.alex44.audioplayertestapp.presenters
 
 import com.alex44.audioplayertestapp.common.navigation.Screens
 import com.alex44.audioplayertestapp.model.dto.DataDTO
+import com.alex44.audioplayertestapp.model.enums.PlayerState
 import com.alex44.audioplayertestapp.views.DetailView
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
@@ -14,6 +15,10 @@ class DetailPresenter(private val dto: DataDTO?) : MvpPresenter<DetailView>() {
     @Inject
     lateinit var router: Router
 
+    var progress : Int = 0
+
+    var playerState = PlayerState.INIT
+
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         init()
@@ -24,6 +29,7 @@ class DetailPresenter(private val dto: DataDTO?) : MvpPresenter<DetailView>() {
         viewState.setTrackName(dto?.trackName.orEmpty())
         viewState.setPhoto(dto?.artworkUrl.orEmpty())
         viewState.initButtons()
+        viewState.initPlayer(dto?.previewUrl.orEmpty())
     }
 
     fun backClicked() : Boolean {
@@ -32,15 +38,34 @@ class DetailPresenter(private val dto: DataDTO?) : MvpPresenter<DetailView>() {
     }
 
     fun playClicked() {
-        viewState.showMessage("PLAY")
+        playerState = PlayerState.PLAY
+        viewState.play()
     }
 
     fun pauseClicked() {
-        viewState.showMessage("PAUSE")
+        playerState = PlayerState.PAUSE
+        viewState.pause()
     }
 
     fun stopClicked() {
-        viewState.showMessage("STOP")
+        playerState = PlayerState.STOP
+        viewState.stop()
+    }
+
+    fun positionChanged(progress: Int) {
+        this.progress = progress
+        viewState.updateBarPosition(progress)
+        viewState.updateSecPosition(progress)
+    }
+
+    fun positionChangedByUser(progress: Int) {
+        this.progress = progress
+        viewState.updatePlayerPosition(progress)
+        viewState.updateSecPosition(progress)
+    }
+
+    fun playerPrepared() {
+        viewState.setStartPosition(progress, playerState)
     }
 
 }
